@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="../css/style.css">
+    <title>Boter Kaas en Eieren</title>
+</head>
+<body class="center-screen">
+    <H1 >Boter Kaas en Eieren</H1>
+    <h2 id="winner"></h2>
+    <table id ="board">
+    <tr>
+        <td onclick="clickCell(this)"></td>
+        <td onclick="clickCell(this)"></td>
+        <td onclick="clickCell(this)"></td>
+    </tr>
+    <tr>
+        <td onclick="clickCell(this)"></td>
+        <td onclick="clickCell(this)" ></td>
+        <td onclick="clickCell(this)"></td>
+    </tr>
+    <tr>
+        <td onclick="clickCell(this)"></td>
+        <td onclick="clickCell(this)"></td>
+        <td onclick="clickCell(this)"></td>
+    </tr>
+    </table>
+    <button disabled="true" id="restart" onclick="restart()">herstart spel</button>
+<script src="game.js"></script>
+</body>
+</html>
