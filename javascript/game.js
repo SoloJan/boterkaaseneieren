@@ -8,10 +8,10 @@ function clickCell(cell) {
       return;
    }
    if(crossTurn) {
-      cell.innerHTML = '<img src="../resources/cross.png">';
+      cell.innerHTML = '<img src="cross.png">';
    }
    else{
-      cell.innerHTML = '<img src="../resources/circle.png">';
+      cell.innerHTML = '<img src="circle.png">';
    }
    crossTurn = !crossTurn;
    checkWinner();
