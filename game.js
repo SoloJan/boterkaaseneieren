@@ -14,8 +14,8 @@ function clickCell(cell) {
       cell.innerHTML = '<img src="circle.png">';
    }
    crossTurn = !crossTurn;
-   checkWinner();
    checkNoMoreMoves();
+   checkWinner();
    if(gameOver){
      let  button =  document.getElementById("restart");
      button.disabled = false;
