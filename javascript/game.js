@@ -3,6 +3,31 @@ let crossTurn = false;
 let gameOver = false;
 let winner;
 
+
+
+
+function computerPlays(){
+   let row = getRandomInt(3);
+   let column = getRandomInt(3);
+   let table =  document.getElementById("board");
+   let cell = table.rows[row].cells[column];
+   if(!cellIsEmpty(cell)){
+      gameOver = true;
+      let winnerText =  document.getElementById("winner");
+      winnerText.innerText = "De computer probeerde een ongeldige zet jij wint"
+      crossTurn = !crossTurn;
+      let  button =  document.getElementById("restart");
+      button.disabled = false;
+   }
+   else{
+      clickCell(cell);
+   }
+}
+
+function getRandomInt(max) {
+   return Math.floor(Math.random() * max);
+ }
+
 function clickCell(cell) {
    if(!cellIsEmpty(cell) || gameOver){
       return;
@@ -21,6 +46,9 @@ function clickCell(cell) {
      button.disabled = false;
       displayWinner();
    }
+   else if(crossTurn) {
+      computerPlays(); 
+   }
 }
 
 function displayWinner(){
@@ -29,10 +57,10 @@ function displayWinner(){
       winnerText.innerText =  "Er zijn geen zetten meer mogelijk gelijkspel";
    }
    if(winner.endsWith("cross.png")){
-      winnerText.innerText =  "De speler die speelde met X heeft gewonnen";
+      winnerText.innerText =  "De computer heeft gewonnen";
    }
    if(winner.endsWith("circle.png")){
-      winnerText.innerText =  "De speler die speelde met 0 heeft gewonnen";
+      winnerText.innerText =  "Jij wint";
    }
 }
 
@@ -55,6 +83,9 @@ function restart(){
    button.disabled = true;
    let winnerText =  document.getElementById("winner");
    winnerText.innerHTML='';
+   if(crossTurn){
+      computerPlays();
+   }
 }
 
 function checkNoMoreMoves(){
