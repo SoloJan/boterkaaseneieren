@@ -3,6 +3,7 @@ let crossTurn = false;
 let gameOver = false;
 let winner;
 
+let movesInGame = {};
 
 
 
@@ -11,7 +12,10 @@ function computerPlays(){
    let column = getRandomInt(3);
    let table =  document.getElementById("board");
    let cell = table.rows[row].cells[column];
+   let gameState = tableToString();
+   movesInGame[gameState] = row + "" + column;
    if(!cellIsEmpty(cell)){
+      console.log(movesInGame);
       gameOver = true;
       let winnerText =  document.getElementById("winner");
       winnerText.innerText = "De computer probeerde een ongeldige zet jij wint"
@@ -22,6 +26,25 @@ function computerPlays(){
    else{
       clickCell(cell);
    }
+}
+
+function tableToString(){
+   let table =  document.getElementById("board");
+   let s = "";
+   for (let row = 0; row < 3; row++) {
+      for(let column = 0; column < 3; column++){
+         if(cellIsEmpty(table.rows[row].cells[column])){
+            continue;
+         }
+         else if(cellHasXSymbol(table.rows[row].cells[column])){
+            s +=  "x" + row + "" + column;
+         }
+         else{
+            s +=  "s" + row + "" + column;
+         }
+      }
+   }
+   return s;
 }
 
 function getRandomInt(max) {
@@ -44,7 +67,8 @@ function clickCell(cell) {
    if(gameOver){
      let  button =  document.getElementById("restart");
      button.disabled = false;
-      displayWinner();
+     console.log(movesInGame);
+     displayWinner();
    }
    else if(crossTurn) {
       computerPlays(); 
@@ -83,6 +107,7 @@ function restart(){
    button.disabled = true;
    let winnerText =  document.getElementById("winner");
    winnerText.innerHTML='';
+   movesInGame = {};
    if(crossTurn){
       computerPlays();
    }
@@ -131,7 +156,10 @@ function checkDiagonal(table) {
 
 function cellHasSameImage(cell, image){
    return !cellIsEmpty(cell) && cell.lastChild.src == image
+}
 
+function cellHasXSymbol(cell){
+   return cell.lastChild.src.endsWith("cross.png");
 }
 
 function checkThreeInAColumn(table, column) {
