@@ -4,6 +4,7 @@ let gameOver = false;
 let winner;
 
 let movesInGame = {};
+let movesInTotal = {};
 
 
 
@@ -13,9 +14,12 @@ function computerPlays(){
    let table =  document.getElementById("board");
    let cell = table.rows[row].cells[column];
    let gameState = tableToString();
-   movesInGame[gameState] = row + "" + column;
+   let move = row + "" + column;
+   movesInGame[gameState] = move;
    if(!cellIsEmpty(cell)){
-      console.log(movesInGame);
+
+      updateMoves(gameState, move, -10);
+      console.log(movesInTotal);
       gameOver = true;
       let winnerText =  document.getElementById("winner");
       winnerText.innerText = "De computer probeerde een ongeldige zet jij wint"
@@ -25,6 +29,20 @@ function computerPlays(){
    }
    else{
       clickCell(cell);
+   }
+}
+
+function updateMoves(gameState, move, points){
+   if(movesInTotal[gameState]){
+      if(movesInTotal[gameState][move]){
+         movesInTotal[gameState][move] += points;
+      }
+      else{
+         movesInTotal[gameState][move] = points;
+      }
+   }
+   else {
+      movesInTotal[gameState] = {[move]: points};
    }
 }
 
@@ -40,7 +58,7 @@ function tableToString(){
             s +=  "x" + row + "" + column;
          }
          else{
-            s +=  "s" + row + "" + column;
+            s +=  "o" + row + "" + column;
          }
       }
    }
@@ -67,25 +85,34 @@ function clickCell(cell) {
    if(gameOver){
      let  button =  document.getElementById("restart");
      button.disabled = false;
-     console.log(movesInGame);
-     displayWinner();
+     displayWinnerAndUpdateMoves();
    }
    else if(crossTurn) {
       computerPlays(); 
    }
 }
 
-function displayWinner(){
+function displayWinnerAndUpdateMoves(){
    let winnerText =  document.getElementById("winner");
    if(winner === "gelijk"){
       winnerText.innerText =  "Er zijn geen zetten meer mogelijk gelijkspel";
+      for (const [key, value] of Object.entries(movesInGame)) {
+         updateMoves(key, value, 1)
+      }
    }
    if(winner.endsWith("cross.png")){
       winnerText.innerText =  "De computer heeft gewonnen";
+      for (const [key, value] of Object.entries(movesInGame)) {
+         updateMoves(key, value, 2)
+      }
    }
    if(winner.endsWith("circle.png")){
       winnerText.innerText =  "Jij wint";
+      for (const [key, value] of Object.entries(movesInGame)) {
+         updateMoves(key, value, -1)
+      }
    }
+   console.log(movesInTotal);
 }
 
 function setWinner(image) {
