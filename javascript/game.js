@@ -1,5 +1,6 @@
 
 let crossTurn = false;
+let crossStartsGame = false;
 let gameOver = false;
 let winner;
 
@@ -9,21 +10,18 @@ let movesInTotal = {};
 
 
 function computerPlays(){
-   let row = getRandomInt(3);
-   let column = getRandomInt(3);
+   let move = getComputerMove();
+   let row = move.charAt(0);
+   let column = move.charAt(1);
    let table =  document.getElementById("board");
    let cell = table.rows[row].cells[column];
    let gameState = tableToString();
-   let move = row + "" + column;
    movesInGame[gameState] = move;
    if(!cellIsEmpty(cell)){
-
       updateMoves(gameState, move, -10);
-      console.log(movesInTotal);
       gameOver = true;
       let winnerText =  document.getElementById("winner");
       winnerText.innerText = "De computer probeerde een ongeldige zet jij wint"
-      crossTurn = !crossTurn;
       let  button =  document.getElementById("restart");
       button.disabled = false;
    }
@@ -31,6 +29,43 @@ function computerPlays(){
       clickCell(cell);
    }
 }
+
+function getRandomMove() {
+   let row = getRandomInt(3);
+   let column = getRandomInt(3);
+   return row + "" + column;
+}
+
+function getComputerMove(){
+   let gameState = tableToString();
+   // if the state is unknown we try a new move
+   if(!movesInTotal[gameState]){
+      return getRandomMove();
+   }
+
+   // find the best score
+   let bestScore = -1000;
+   let bestMove = "";
+   for (const [key, value] of Object.entries(movesInTotal[gameState])) {
+      if(value >= bestScore){
+         bestScore = value;
+         bestMove = key;
+      }
+   }
+   // return the best move if its score positive or if all posibilties have been tried before
+   if(Object.entries(movesInTotal[gameState]).length == 9 || bestScore > 0 ){
+      return bestMove;
+   }
+   // if all moves known so far are negative we will try a move we have not done before
+   while(true){
+      let move = getRandomMove();
+      if(!movesInTotal[gameState][move]){
+         return move;
+      }
+   }
+
+}
+
 
 function updateMoves(gameState, move, points){
    if(movesInTotal[gameState]){
@@ -112,14 +147,11 @@ function displayWinnerAndUpdateMoves(){
          updateMoves(key, value, -1)
       }
    }
-   console.log(movesInTotal);
 }
 
 function setWinner(image) {
-   console.log("The winner is: " + image);
    winner = image;
    gameOver = true;
-
 }
 
 function restart(){
@@ -130,6 +162,8 @@ function restart(){
          table.rows[row].cells[column].innerHTML = '';
       }
    }
+   crossStartsGame = !crossStartsGame;
+   crossTurn = crossStartsGame;
    let  button =  document.getElementById("restart");
    button.disabled = true;
    let winnerText =  document.getElementById("winner");
