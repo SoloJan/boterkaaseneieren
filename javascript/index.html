@@ -24,27 +24,33 @@
             </p>
         </div>
         <div class="card">
-    <h2 id="winner"></h2>
-    <table id ="board">
-    <tr>
-        <td onclick="clickCell(this)"></td>
-        <td onclick="clickCell(this)"></td>
-        <td onclick="clickCell(this)"></td>
-    </tr>
-    <tr>
-        <td onclick="clickCell(this)"></td>
-        <td onclick="clickCell(this)" ></td>
-        <td onclick="clickCell(this)"></td>
-    </tr>
-    <tr>
-        <td onclick="clickCell(this)"></td>
-        <td onclick="clickCell(this)"></td>
-        <td onclick="clickCell(this)"></td>
-    </tr>
-    </table>
-    <button disabled="true" id="restart" onclick="restart()">herstart spel</button>
+            <h2 id="winner"></h2>
+            <table id ="board">
+                 <tr>
+                    <td onclick="clickCell(this)"></td>
+                    <td onclick="clickCell(this)"></td>
+                    <td onclick="clickCell(this)"></td>
+                </tr>
+                <tr>
+                    <td onclick="clickCell(this)"></td>
+                    <td onclick="clickCell(this)" ></td>
+                    <td onclick="clickCell(this)"></td>
+                </tr>
+                <tr>
+                    <td onclick="clickCell(this)"></td>
+                    <td onclick="clickCell(this)"></td>
+                    <td onclick="clickCell(this)"></td>
+                </tr>
+            </table>
+                <button disabled="true" id="restart" onclick="restart()">herstart spel</button>
         </div>
-
+        <div class="card">
+            <h2>Laat de computer zelf trainen</h2>
+            <p> Hoe vaker je de computer traint hoe beter die wort</p>
+            <button onclick="train(10)">train tien keer</button>
+            <button onclick="train(100)">train honderd keer</button>
+            <button onclick="train(1000)">train duizend keer</button>
+        </div>
     </div>
 <script src="game.js"></script>
 </body>

@@ -9,6 +9,48 @@ let movesInTotal = {};
 
 
 
+function train(number){
+   gameOver = true;
+   for(let i = 0; i<number; i++){
+      trainingGame();
+      restart();
+   }
+}
+
+function trainingGame(){
+   while(!gameOver){
+      if(crossTurn){
+         computerPlays();
+      }
+      else{
+         trainerPlays();
+      }
+   }
+}
+
+function trainerPlays(){
+   let move = getTrainerMove();
+   let row = move.charAt(0);
+   let column = move.charAt(1);
+   let table =  document.getElementById("board");
+   let cell = table.rows[row].cells[column];
+   clickCell(cell);
+}
+
+function getTrainerMove(){
+   while(true){
+      let move = getRandomMove();
+      let row = move.charAt(0);
+      let column = move.charAt(1);
+      let table =  document.getElementById("board");
+      let cell = table.rows[row].cells[column];
+      if(cellIsEmpty(cell)){
+         return move;
+      }
+   }
+}
+
+
 function computerPlays(){
    let move = getComputerMove();
    let row = move.charAt(0);
