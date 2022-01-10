@@ -169,10 +169,20 @@ function getRandomMove() {
 }
 
 function getComputerMove(){
-   if(inTraining){
-      return getRandomMove();
-   }
    let gameState = tableToString();
+
+   // if the computer is in training we will try a random move, but we will avoid moves which have a very bad score
+   if(inTraining){
+      let attempts = 0;
+      while(true){
+         let move = getRandomMove();
+         attempts++;
+         if(!movesInTotal[gameState] || !movesInTotal[gameState][move] || attempts > 20 || movesInTotal[gameState][move] > -10){
+            return move;
+         }
+      }
+   }
+
    // if the state is unknown we try a new move
    if(!movesInTotal[gameState]){
       return getRandomMove();
@@ -200,6 +210,7 @@ function getComputerMove(){
    }
 
 }
+
 
 
 function updateMoves(gameState, move, points){
