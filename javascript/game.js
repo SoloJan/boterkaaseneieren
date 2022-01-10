@@ -21,6 +21,12 @@ let movesInTotal = {};
 let inTraining = false;
 let gameCount = 0;
 
+let lastHundredGamesOfTraining = false;
+
+let winCount =0;
+let lossCount = 0;
+let drawCount = 0;
+
 
 /*
 Below is all the logic which has to do with just playing the game, it is the biggest chunk of code
@@ -72,7 +78,7 @@ function restart(){
    if(crossTurn){
       computerPlays();
    }
-   updateGameCount();
+   updateStatistics();
 }
 
 
@@ -160,11 +166,9 @@ function setWinner(image) {
    gameOver = true;
 }
 
-function updateGameCount() {
-   gameCount++;
-   let countText = document.getElementById("count");
-   countText.innerHTML = "" + gameCount;
-}
+
+
+
 
 function switchTurns() {
    crossTurn = !crossTurn;
@@ -277,7 +281,8 @@ function getComputerMove(){
    let gameState = tableToString();
 
    // if the computer is in training we will try a random move, but we will avoid moves which have a very bad score
-   if(inTraining){
+   // The last hundred games of training the computer will play using the knowledge from the rest of the training
+   if(inTraining && !lastHundredGamesOfTraining){
       let attempts = 0;
       while(true){
          let move = getRandomMove();
@@ -333,7 +338,15 @@ And if the computer hasn't seen a scenario in practice he won't know how to deal
 function train(number){
    gameOver = true;
    inTraining = true;
+   lastHundredGamesOfTraining = false;
+   winCount = 0;
+   lossCount = 0;
+   drawCount = 0;
+
    for(let i = 0; i<number; i++){
+      if(number-i<100){
+         lastHundredGamesOfTraining = true;
+      }
       trainingGame();
       restart();
    }
@@ -452,6 +465,54 @@ function getOnlyEmptyCellInCollection(cells, image){
    }
 
 }
+
+/*
+   The following section contains some methods to update the statistics about the game
+   -------------------------------------------------------------------------------------------------------------------
+ */
+
+
+
+
+function updateGameCount() {
+   gameCount++;
+   let countText = document.getElementById("count");
+   countText.innerHTML = "" + gameCount;
+}
+
+function updateStatistics(){
+   updateGameCount();
+   if(inTraining && lastHundredGamesOfTraining){
+      if(isDraw()){
+         updateDrawCount();
+      }
+      if(crossWins()){
+         updateWinCount();
+      }
+      if(circleWins()){
+         updateLossCount();
+      }
+   }
+}
+
+function updateWinCount() {
+   winCount++;
+   let countText = document.getElementById("win-count");
+   countText.innerHTML = "" + winCount;
+}
+
+function updateLossCount() {
+   lossCount++;
+   let countText = document.getElementById("loss-count");
+   countText.innerHTML = "" + lossCount;
+}
+
+function updateDrawCount() {
+   drawCount++;
+   let countText = document.getElementById("draw-count");
+   countText.innerHTML = "" + drawCount;
+}
+
 
 /*
 The final section contains some helper methods wich are used in the rest of the code there is a method to check if a
