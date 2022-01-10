@@ -7,6 +7,7 @@ let winner;
 let movesInGame = {};
 let movesInTotal = {};
 let inTraining = false;
+let gameCount = 0;
 
 
 function train(number){
@@ -301,11 +302,14 @@ function restart(){
    let  button =  document.getElementById("restart");
    button.disabled = true;
    let winnerText =  document.getElementById("winner");
-   winnerText.innerHTML='';
+   winnerText.innerHTML='Speel een spelletje';
    movesInGame = {};
    if(crossTurn){
       computerPlays();
    }
+   gameCount++;
+   let countText =  document.getElementById("count");
+   countText.innerHTML=""+gameCount;
 }
 
 function checkNoMoreMoves(){
