@@ -24,27 +24,36 @@
             </p>
         </div>
         <div class="card">
-    <h2 id="winner"></h2>
-    <table id ="board">
-    <tr>
-        <td onclick="clickCell(this)"></td>
-        <td onclick="clickCell(this)"></td>
-        <td onclick="clickCell(this)"></td>
-    </tr>
-    <tr>
-        <td onclick="clickCell(this)"></td>
-        <td onclick="clickCell(this)" ></td>
-        <td onclick="clickCell(this)"></td>
-    </tr>
-    <tr>
-        <td onclick="clickCell(this)"></td>
-        <td onclick="clickCell(this)"></td>
-        <td onclick="clickCell(this)"></td>
-    </tr>
-    </table>
-    <button disabled="true" id="restart" onclick="restart()">herstart spel</button>
+            <h2 id="winner">Speel een spelletje</h2>
+            <table id ="board">
+                 <tr>
+                    <td onclick="clickCell(this)"></td>
+                    <td onclick="clickCell(this)"></td>
+                    <td onclick="clickCell(this)"></td>
+                </tr>
+                <tr>
+                    <td onclick="clickCell(this)"></td>
+                    <td onclick="clickCell(this)" ></td>
+                    <td onclick="clickCell(this)"></td>
+                </tr>
+                <tr>
+                    <td onclick="clickCell(this)"></td>
+                    <td onclick="clickCell(this)"></td>
+                    <td onclick="clickCell(this)"></td>
+                </tr>
+            </table>
+                <button disabled="true" id="restart" onclick="restart()">herstart spel</button>
         </div>
-
+        <div class="card">
+            <h2>Laat de computer zelf trainen</h2>
+            <p> De computer heeft <span id="count">0</span> potjes gespeeld. Hoe vaker je de computer traint hoe beter die wordt, maar de computer zal nooit de regels van het spel snappen.
+                Als jij onverwacht gedrag vertoond komt de computer in scenario's terecht die die nog nooit gezien heeft en zal die ook weer ongeldige zetten doen.
+                Hoe veel spelletjes zijn er nodig om de computer onverslaanbaar te maken ?
+                <br><br>
+                Als je de website herlaad bijvoorbeeld door de browser te sluiten en opnieuw op te starten begin je opnieuw en vergeet de computer al zijn trainingen.
+            </p>
+            <button onclick="train(1000)">train duizend keer</button>
+        </div>
     </div>
 <script src="game.js"></script>
 </body>

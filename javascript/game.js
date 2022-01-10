@@ -6,8 +6,140 @@ let winner;
 
 let movesInGame = {};
 let movesInTotal = {};
+let inTraining = false;
+let gameCount = 0;
 
 
+function train(number){
+   gameOver = true;
+   inTraining = true;
+   for(let i = 0; i<number; i++){
+      trainingGame();
+      restart();
+   }
+   inTraining = false;
+}
+
+function trainingGame(){
+   while(!gameOver){
+      if(crossTurn){
+         computerPlays();
+      }
+      else{
+         trainerPlays();
+      }
+   }
+}
+
+function trainerPlays(){
+   let cell = getTrainerMove();
+   clickCell(cell);
+}
+
+function getTrainerMove(){
+   let cellToWin = getCellToWin()
+   if(cellToWin){
+      return cellToWin;
+   }
+   let cellToBlockOpponentFromWinning = getCellToBlockOpponentFromWinning();
+   if(cellToBlockOpponentFromWinning){
+      return cellToBlockOpponentFromWinning;
+   }
+   while(true){
+      let move = getRandomMove();
+      let row = move.charAt(0);
+      let column = move.charAt(1);
+      let table =  document.getElementById("board");
+      let cell = table.rows[row].cells[column];
+      if(cellIsEmpty(cell)){
+         return cell;
+      }
+   }
+}
+
+
+function getCellToWin(){
+   return getDecisiveCell("circle.png");
+}
+
+function getCellToBlockOpponentFromWinning(){
+   return getDecisiveCell("cross.png");
+}
+
+function getDecisiveCell(image){
+   let cellToCompleteRow =   getOnlyEmptyCellInRows(image);
+   if(cellToCompleteRow){
+      return cellToCompleteRow;
+   }
+   let cellToCompleteColumn = getOnlyEmptyCellInColumns(image);
+   if(cellToCompleteColumn){
+      return cellToCompleteColumn;
+   }
+   return getOnlyEmptyCellInDiagonal(image);
+}
+
+function getOnlyEmptyCellInDiagonal(image){
+   let diagonal1 = [];
+   let table =  document.getElementById("board");
+   diagonal1.push(table.rows[0].cells[0])
+   diagonal1.push(table.rows[1].cells[1])
+   diagonal1.push(table.rows[2].cells[2])
+   let cellToCompleteDiagonal1 = getOnlyEmptyCellInCollection(diagonal1, image);
+   if(cellToCompleteDiagonal1){
+      return cellToCompleteDiagonal1;
+   }
+   let diagonal2 = [];
+   diagonal2.push(table.rows[0].cells[2])
+   diagonal2.push(table.rows[1].cells[1])
+   diagonal2.push(table.rows[2].cells[0])
+   let cellToCompleteDiagonal2 = getOnlyEmptyCellInCollection(diagonal2, image);
+   if(cellToCompleteDiagonal2){
+      return cellToCompleteDiagonal2;
+   }
+}
+
+function getOnlyEmptyCellInColumns(image){
+   let table =  document.getElementById("board");
+   for(let column = 0; column < 3; column++){
+      let fullColumn = [];
+      for(let row = 0; row < 3; row++){
+         fullColumn.push(table.rows[row].cells[column]);
+      }
+      let emptyCell = getOnlyEmptyCellInCollection(fullColumn, image);
+      if(emptyCell){
+         return emptyCell}
+   }
+}
+
+function getOnlyEmptyCellInRows(image){
+   let table =  document.getElementById("board");
+   for(let row = 0; row < 3; row++){
+      let emptyCell = getOnlyEmptyCellInCollection(table.rows[row].cells, image)
+      if(emptyCell){
+         return emptyCell;
+      }
+   }
+}
+
+function getOnlyEmptyCellInCollection(cells, image){
+   let imageCount = 0;
+   let emptyCellCount = 0;
+   let emptyCell;
+   for (let i = 0; i < 3; i++) {
+      let cell = cells[i];
+      if(cellIsEmpty(cell)){
+         emptyCell = cell;
+         emptyCellCount++;
+      }
+      else if(cell.lastChild.src.endsWith(image)) {
+            imageCount++;
+      }
+   }
+   if(emptyCellCount == 1 && imageCount == 2){
+      return emptyCell;
+   }
+
+}
 
 function computerPlays(){
    let move = getComputerMove();
@@ -37,6 +169,9 @@ function getRandomMove() {
 }
 
 function getComputerMove(){
+   if(inTraining){
+      return getRandomMove();
+   }
    let gameState = tableToString();
    // if the state is unknown we try a new move
    if(!movesInTotal[gameState]){
@@ -167,11 +302,14 @@ function restart(){
    let  button =  document.getElementById("restart");
    button.disabled = true;
    let winnerText =  document.getElementById("winner");
-   winnerText.innerHTML='';
+   winnerText.innerHTML='Speel een spelletje';
    movesInGame = {};
    if(crossTurn){
       computerPlays();
    }
+   gameCount++;
+   let countText =  document.getElementById("count");
+   countText.innerHTML=""+gameCount;
 }
 
 function checkNoMoreMoves(){
