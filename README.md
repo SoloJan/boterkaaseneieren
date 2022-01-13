@@ -21,7 +21,21 @@ maar voor de computer is elke zet die die doet gewoon de beste uit een lijstje m
 heel veel potjes, maar voor een computer niet zo veel, deze computer doet 100.000 spelletjes in 5 minuten, maar veel computers worden uren of jaren getraind.
 De algoritmes achter google en facebook zijn gebaseerd op oneindig veel meer data dan jij in 5 minuten genereert. 
 
-## Zelf aan zet
+## Inhoudsopgave
+
+1. [Zelf aan zet](##zelfaanzet)
+    1. [Installatie voor dummies](#Installatievoordummies)
+2. [Stappen plan, en manieren om het leren te manipuleren](#stappenplan)
+    1. [Stap 1](#stap1)
+    2. [Stap 2](#stap2)
+    3. [Stap 3](#stap3)
+    4. [Stap 4](#stap4)
+    5. [Stap 5](#stap5)
+    6. [Stap 6](#stap6)
+    7. [Stap 7](#stap7)
+3. [Keuze voor techniek](#techniek)
+
+## Zelf aan zet <a name="zelfaanzet"></a>
 
 Als je het leergedrag aanpast krijg je ook een ander eind resultaat. Als je de computer nu 20.000 keer traint zul je zien dat hij steeds vaker 
 gelijk gaat spelen tegen zijn trainer, de computer speelt ook vaker gelijk dan dat die wint. In de folder javascript zit een file game.js 
@@ -45,7 +59,7 @@ vooral stap 4, 5 en 6 zijn interessant als je het leergedrag wilt aanpassen.
 Als je weet hoe git werkt en je hebt eerder met javascript en html gewerkt kun je aan de slag, heb je geen idee wat git
 of javascript is dan volgt hieronder nog een uitleg hoe je er mee aan de slag kan gaan. 
 
-### Installatie voor dummies
+### Installatie voor dummies <a name="Installatievoordummies"></a>
 
 Als je naar de url https://github.com/SoloJan/boterkaaseneieren gaat kom je op een pagina waar de code staat. Je ziet een 
 groene knop met daarop de tekst code, klik er op en kies voor Download Zip. Ben je bekend met git gebruik dan één 
@@ -65,12 +79,12 @@ Maar voor een enkele aanpassing is notepad op windows of TextEdit op Apple prima
 
 Je bent klaar om te gaan begin de code aan te passen en bedenk nieuwe strategieën succes. 
 
-## Stappen plan, en manieren om het leren te manipuleren 
+## Stappen plan, en manieren om het leren te manipuleren <a name="stappenplan"></a>
 
 Hier volgt een uitleg hoe je zelf dit kan nabouwen, met steeds ook suggesties hoe je het beter kan maken of hoe je
 het leergedrag van de computer zou kunnen veranderen. 
 
-### Stap 1: It is all in the game
+### Stap 1: It is all in the game <a name="stap1"></a>
 Maak een spelletje boter kaas en eieren. Zorg dat je het speler tegen speler kan spelen, waarbij je omstebeurt een kruisje 
 of rondje mag zetten in het speelveld en zorg ook voor een herstart mogelijkheid. 
 Bij boter kaas en eieren heb je veel meer kans om te winnen als je start. Dus bij het tweede spelletje mag altijd degene beginnen die 
@@ -81,7 +95,7 @@ als je goed snapt hoe het spelletje werkt en is gemaakt in code, is het straks o
 
 Na deze stap was mijn code dit https://github.com/SoloJan/boterkaaseneieren/tree/implement-player-against-player
 
-### Stap 2: Zorg dat je ook tegen de computer kan spelen 
+### Stap 2: Zorg dat je ook tegen de computer kan spelen c <a name="stap2"></a>
 
 Maak het spel zo dat je ook tegen de computer kan spelen. Voor nu doet de computer altijd een willekeurige zet, dat kan 
 dus ook een zet zijn waarbij hij bovenop een rondje of kruisje gaat staan wat er al stond. 
@@ -89,7 +103,7 @@ dus ook een zet zijn waarbij hij bovenop een rondje of kruisje gaat staan wat er
 Na deze stap was mijn code dit https://github.com/SoloJan/boterkaaseneieren/tree/implement-computer-player-in-javascript 
 waarbij je de php folders kunt negeren. 
 
-### Stap 3: Sla de stappen op die de computer zet
+### Stap 3: Sla de stappen op die de computer zet <a name="stap3"></a>
 
 Een belangrijk onderdeel is dat de computer kan leren van voorgaande spel situaties, daarvoor moeten we een spelsituatie wel kunnen 
 opslaan, en later herkennen. Ik kies ervoor om het bord op te slaan en de zet die de computer doet. Je zou ook andere keuzes 
@@ -126,7 +140,7 @@ Dat klinkt heel ingewikkeld, maar is het niet mijn code na deze stap vind je hie
 
 Bedenk dat de computer nog niets leert, dit is alleen maar infrastructuur die later nodig is
 
-### Stap 4: This is where the magic happens
+### Stap 4: This is where the magic happens <a name="stap4"></a>
 
 In deze stap gaan we aangeven wat goed en slecht gedrag is van de computer. Vergelijk het met het trainen van een hond, 
 waarbij je goed gedrag beloont met een snoepje, en je bij slecht gedrag de hond bestraffend toespreekt. Als de link tussen oorzaak en gevolg makkelijk is is het makkelijk leren.
@@ -153,7 +167,7 @@ Na deze stap leert de computer al, maar past die het nog niet toe. Je vind de co
 
 https://github.com/SoloJan/boterkaaseneieren/tree/give-scores-to-different-outcomes
 
-### Stap 5: Lessen in de praktijk
+### Stap 5: Lessen in de praktijk <a name="stap5"></a>
 
 Het is nu zaak om de lessen in de praktijk te brengen. De computer weet nu wat slechtte en goede zetten zijn, maar hoe gaat die om met dat gedrag.
 Ik hanteer de volgende regels
@@ -165,7 +179,7 @@ Ik hanteer de volgende regels
 Na deze stap kun je zelf tegen de computer spelen mijn code na deze stap vind je hier 
 https://github.com/SoloJan/boterkaaseneieren/tree/use-the-scores-of-previous-games-to-determine-move 
 
-### Stap 6: Trainen, Trainen, Trainen 
+### Stap 6: Trainen, Trainen, Trainen  <a name="stap6"></a>
 
 Het duurt best lang voordat de computer goed wordt, dus je wilt hem niet helemaal zelf trainen. Gelukkig kan dat ook automatisch. 
 De trainings data heeft een groot effect op hoe de computer speelt dus deze stap is belangrijk. 
@@ -200,12 +214,12 @@ Mijn code na deze stap vind je hier
 
 https://github.com/SoloJan/boterkaaseneieren/tree/implement-possibility-to-train-computer-by-itself
 
-## Stap 7: Wrap up 
+### Stap 7: Wrap up <a name="stap7"></a>
 
 Na stap 6 heb ik nog wat logica toegevoegd voor het bijhouden van de scores, en heb ik de code nog wat geherstructureerd 
 om meer duidelijkheid te geven, daarom staan stukken code soms op andere plekken dan eerst. 
 
-## Keuze voor techniek
+## Keuze voor techniek <a name="techniek"></a>
 
 Ik kies voor een javascript implementatie. Het voordeel van javascript is dat het draait in de browser. En omdat iedereen 
 een browser heeft op zijn laptop en telefoon hoef je niets te downloaden om met de code aan de slag te gaan. Dus ook mensen 
