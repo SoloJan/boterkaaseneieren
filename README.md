@@ -26,13 +26,13 @@ De algoritmes achter google en facebook zijn gebaseerd op oneindig veel meer dat
 1. [Zelf aan zet](##zelfaanzet)
     1. [Installatie voor dummies](#Installatievoordummies)
 2. [Stappen plan, en manieren om het leren te manipuleren](#stappenplan)
-    1. [Stap 1](#stap1)
-    2. [Stap 2](#stap2)
-    3. [Stap 3](#stap3)
-    4. [Stap 4](#stap4)
-    5. [Stap 5](#stap5)
-    6. [Stap 6](#stap6)
-    7. [Stap 7](#stap7)
+    1. [Stap 1: Its all in the game](#stap1)
+    2. [Stap 2: Zorg dat je ook tegen de computer kan spelen](#stap2)
+    3. [Stap 3: Sla de stappen op die de computer zet ](#stap3)
+    4. [Stap 4: This is where the magic happens](#stap4)
+    5. [Stap 5: Lessen in de praktijk](#stap5)
+    6. [Stap 6: Practice makes perfect](#stap6)
+    7. [Stap 7: Wrap up](#stap7)
 3. [Keuze voor techniek](#techniek)
 
 ## Zelf aan zet <a name="zelfaanzet"></a>
@@ -79,7 +79,7 @@ Maar voor een enkele aanpassing is notepad op windows of TextEdit op Apple prima
 
 Je bent klaar om te gaan begin de code aan te passen en bedenk nieuwe strategieën succes. 
 
-## Stappen plan, en manieren om het leren te manipuleren <a name="stappenplan"></a>
+## Stappen plan en manieren om het leren te manipuleren <a name="stappenplan"></a>
 
 Hier volgt een uitleg hoe je zelf dit kan nabouwen, met steeds ook suggesties hoe je het beter kan maken of hoe je
 het leergedrag van de computer zou kunnen veranderen. 
@@ -95,7 +95,7 @@ als je goed snapt hoe het spelletje werkt en is gemaakt in code, is het straks o
 
 Na deze stap was mijn code dit https://github.com/SoloJan/boterkaaseneieren/tree/implement-player-against-player
 
-### Stap 2: Zorg dat je ook tegen de computer kan spelen c <a name="stap2"></a>
+### Stap 2: Zorg dat je ook tegen de computer kan spelen <a name="stap2"></a>
 
 Maak het spel zo dat je ook tegen de computer kan spelen. Voor nu doet de computer altijd een willekeurige zet, dat kan 
 dus ook een zet zijn waarbij hij bovenop een rondje of kruisje gaat staan wat er al stond. 
@@ -179,7 +179,7 @@ Ik hanteer de volgende regels
 Na deze stap kun je zelf tegen de computer spelen mijn code na deze stap vind je hier 
 https://github.com/SoloJan/boterkaaseneieren/tree/use-the-scores-of-previous-games-to-determine-move 
 
-### Stap 6: Trainen, Trainen, Trainen  <a name="stap6"></a>
+### Stap 6: Practice makes perfect  <a name="stap6"></a>
 
 Het duurt best lang voordat de computer goed wordt, dus je wilt hem niet helemaal zelf trainen. Gelukkig kan dat ook automatisch. 
 De trainings data heeft een groot effect op hoe de computer speelt dus deze stap is belangrijk. 
