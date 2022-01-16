@@ -23,6 +23,7 @@ let gameCount = 0;
 
 let lastHundredGamesOfTraining = false;
 
+
 let winCount =0;
 let lossCount = 0;
 let drawCount = 0;
@@ -75,10 +76,11 @@ function restart(){
    disableRestartButton(true);
    setGameHeaderText('Speel een spelletje');
    movesInGame = {};
+   updateStatistics();
    if(crossTurn){
       computerPlays();
    }
-   updateStatistics();
+
 }
 
 
@@ -342,9 +344,8 @@ function train(number){
    winCount = 0;
    lossCount = 0;
    drawCount = 0;
-
    for(let i = 0; i<number; i++){
-      if(number-i<100){
+      if(number-i<101){
          lastHundredGamesOfTraining = true;
       }
       trainingGame();
@@ -482,7 +483,7 @@ function updateGameCount() {
 
 function updateStatistics(){
    updateGameCount();
-   if(inTraining && lastHundredGamesOfTraining){
+   if(!inTraining || lastHundredGamesOfTraining){
       if(isDraw()){
          updateDrawCount();
       }
@@ -493,6 +494,12 @@ function updateStatistics(){
          updateLossCount();
       }
    }
+   updateStatisticCount();
+}
+
+function updateStatisticCount(){
+   let countText = document.getElementById("statistic-count");
+   countText.innerHTML = "" + (winCount + lossCount + drawCount);
 }
 
 function updateWinCount() {
